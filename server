@@ -3,12 +3,21 @@
 import socket		 	            
 import sys
 
-s = socket.socket()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-from_user= sys.argv[1]
-split= from_user.split(':')	  		    
-host = str(split[0])                     
-port = int(split[1])
+from_user  = sys.argv[1]
+split      = from_user.split(':')	  		    
+host       = str(split[0])                     
+port       = int(split[1])
 
-print("input", from_user )
+s.bind((host, port)) 			    
+s.listen(1)
+
+print("Server is active")
+
+while True:
+     c, addr = s.accept() 		    
+     print('GConnected to', addr)
+
+
 
