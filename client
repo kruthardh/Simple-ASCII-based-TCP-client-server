@@ -3,12 +3,15 @@
 import socket		 	                      
 import sys
 
-s = socket.socket() 	  		              
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 	  		              
 
-from_user=sys.argv[1]
-split=from_user.split(':')
-host = str(split[0])                           
-port = int(split[1])                           
+from_user   = sys.argv[1]
+split       = from_user.split(':')
+host        = str(split[0])                           
+port        = int(split[1])
+
+
+s.connect((host, port))                           
                            
-print("The IP address of the server is:", host)
-print("The port number of the server is:", port)
+print("IP address :", host)
+print("Port :", port)
