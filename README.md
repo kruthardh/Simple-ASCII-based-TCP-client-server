@@ -1,1 +1,1 @@
-# kruthardh-Simple-ASCII-based-TCP-client-server
+# Simple-ASCII-based-TCP-client-server
