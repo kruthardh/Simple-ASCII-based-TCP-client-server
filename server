@@ -1,0 +1,14 @@
+#!/usr/bin/python3
+
+import socket		 	            
+import sys
+
+s = socket.socket()
+
+from_user= sys.argv[1]
+split= from_user.split(':')	  		    
+host = str(split[0])                     
+port = int(split[1])
+
+print("input", from_user )
+
