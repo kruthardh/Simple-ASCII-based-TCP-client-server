@@ -13,11 +13,32 @@ port       = int(split[1])
 s.bind((host, port)) 			    
 s.listen(1)
 
-print("Server is active")
+print("Server is active" "\n" )
 
 while True:
      c, addr = s.accept() 		    
-     print('GConnected to', addr)
+     print('Connected to', addr)
+
+
+     while True:
+          try:
+               X=input("<command> <value1> <value2>: " "\n")
+               c.send(str(X).encode())
+               Y=X.split()
+               answer=c.recv(1024).decode()
+
+               if Y[0] == "add":
+                   a = int(Y[1])+int(Y[2])
+                   if int(a) == int(answer):
+                       print("OK")
+                       break
+                   else:
+                       print("error")
+                       break  
 
 
 
+
+          except:
+               pass     
+               

@@ -13,5 +13,16 @@ port        = int(split[1])
 
 s.connect((host, port))                           
                            
-print("IP address :", host)
-print("Port :", port)
+print("Connected to :",from_user)
+
+
+while(True):
+        Y=(s.recv(1024).decode()).split()
+
+        if Y[0] == "add":
+            print ("Calculating .....")
+            a = int(Y[1])+int(Y[2])
+            s.send(str(a).encode())
+            print("result is ", a )
+            print("Returned the result to the server.")
+            break
