@@ -106,7 +106,14 @@ while True:
                    print ("Wrong input bye bye")
 
 
-               
+          except (ZeroDivisionError):
+               c.send("ZeroDiv".encode())
+          except (ArithmeticError):
+               c.send("MathError".encode())
+          except (SyntaxError):
+               c.send("SyntaxError".encode())
+          except (NameError):
+               c.send("NameError".encode())    
           
 
      c.close()  
