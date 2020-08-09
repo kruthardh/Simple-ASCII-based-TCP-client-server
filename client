@@ -60,7 +60,7 @@ try:
             print ("Calculating .....")
             fa = float(Y[1])+float(Y[2])
             s.send(str(fa).encode())
-            print("result is ", fa)
+            print('result is %8.8g'  %fa)
             print("Returned the result to the server.")
             break
 
@@ -68,7 +68,7 @@ try:
             print ("Calculating .....")
             fb = float(Y[1])-float(Y[2])
             s.send(str(fb).encode())
-            print("result is ", fb)
+            print('result is %8.8g'  % fb)
             print("Returned the result to the server.")
             break
 
@@ -76,15 +76,15 @@ try:
             print ("Calculating .....")
             fd = float(Y[1])*float(Y[2])
             s.send(str(fd).encode())
-            print("result is ", fd)
-            print("Returned the result to the server.")
+            print('result is %8.8g' %fd)
+            print("Returned the result to the server." )
             break
 
         elif Y[0] == "fdiv":
             print ("Calculating .....")
             fe = float(Y[1])/float(Y[2])
             s.send(str(fe).encode())
-            print("result is ", fe)
+            print('result is %8.8g' %fe)
             print("Returned the result to the server.")
             break
 
