@@ -18,6 +18,9 @@ print("Server is active" "\n" )
 while True:
      c, addr = s.accept() 		    
      print('Connected to', addr)
+     c.send("TEXT TCP 1.0 \n".encode())
+     return_msg = c.recv(1024).decode()
+     print("\n" , return_msg) 		    
 
 
      while True:
@@ -34,11 +37,82 @@ while True:
                        break
                    else:
                        print("error")
-                       break  
+                       break
+
+               elif Y[0] == "sub":
+                    b = int(Y[1])-int(Y[2])
+                    if int(b) == int(answer):
+                       print("OK")
+                       break
+                    else:
+                       print("error")
+                       break
+                   
+               elif Y[0] == "mul":
+                   d = int(Y[1])*int(Y[2])
+                   if int(d) == int(answer):
+                       print("OK")
+                       break
+                   else:
+                       print("error")
+                       break
+               elif Y[0] == "div":
+                   e = int(Y[1])/int(Y[2])
+                   if int(e) == int(float(answer)):
+                       print("OK")
+                       break
+                   else:
+                       print("error")
+                       break
+
+               elif Y[0] == "fadd":
+                   fa = float(Y[1])+float(Y[2])
+                   if float(fa) == float(answer):
+                       print("OK")
+                       break
+                   else:
+                       print("error")
+                       break
+
+               elif Y[0] == "fsub":
+                   fb = float(Y[1])-float(Y[2])
+                   print (fb)
+                   if float(fb) == float(answer):
+                       print("OK")
+                       break
+                   else:
+                       print("error")
+                       break
+
+               elif Y[0] == "fmul":
+                   fd = float(Y[1])*float(Y[2])
+                   if float(fd) == float(answer):
+                       print("OK")
+                       break
+                   else:
+                       print("error")
+                       break
+
+               elif Y[0] == "fdiv":
+                   fe = float(Y[1])/float(Y[2])
+                   if float(fe) == float(answer):
+                       print("OK")
+                       break
+                   else:
+                       print("error")
+                       break
+
+               else:
+                   print ("Wrong input bye bye")
+
+
+               
+          
+
+     c.close()  
 
 
 
 
-          except:
-               pass     
+            
                

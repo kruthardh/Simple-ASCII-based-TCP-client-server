@@ -14,6 +14,10 @@ port        = int(split[1])
 s.connect((host, port))                           
                            
 print("Connected to :",from_user)
+initial_msg = s.recv(1024).decode()
+print("\n", initial_msg)
+s.send("OK".encode())
+
 
 
 while(True):
@@ -26,3 +30,68 @@ while(True):
             print("result is ", a )
             print("Returned the result to the server.")
             break
+
+        elif Y[0] == "sub":
+            print ("Calculating .....")
+            b = int(Y[1])-int(Y[2])
+            s.send(str(b).encode())
+            print("result is ", b)
+            print("Returned the result to the server.")
+            break
+
+        elif Y[0] == "mul":
+            print ("Calculating .....")
+            d = int(Y[1])*int(Y[2])
+            s.send(str(d).encode())
+            print("result is ", d)
+            print("Returned the result to the server.")
+            break
+
+        elif Y[0] == "div":
+            print ("Calculating .....")
+            e = int(Y[1])/int(Y[2])
+            s.send(str(e).encode())   
+            print("result is ", e)
+            print("Returned the result to the server.")
+            break
+
+        elif Y[0] == "fadd":
+            print ("Calculating .....")
+            fa = float(Y[1])+float(Y[2])
+            s.send(str(fa).encode())
+            print("result is ", fa)
+            print("Returned the result to the server.")
+            break
+
+        elif Y[0] == "fsub":
+            print ("Calculating .....")
+            fb = float(Y[1])-float(Y[2])
+            s.send(str(fb).encode())
+            print("result is ", fb)
+            print("Returned the result to the server.")
+            break
+
+        elif Y[0] == "fmul":
+            print ("Calculating .....")
+            fd = float(Y[1])*float(Y[2])
+            s.send(str(fd).encode())
+            print("result is ", fd)
+            print("Returned the result to the server.")
+            break
+
+        elif Y[0] == "fdiv":
+            print ("Calculating .....")
+            fe = float(Y[1])/float(Y[2])
+            s.send(str(fe).encode())
+            print("result is ", fe)
+            print("Returned the result to the server.")
+            break        
+            
+
+        else:
+            print("Wrong input bye bye")
+
+        print("Returned the result to the server.")
+
+s.close 				
+
