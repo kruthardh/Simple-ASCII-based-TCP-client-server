@@ -17,7 +17,7 @@ print("Server is active" "\n" )
 
 while True:
      c, addr = s.accept() 		    
-     print('Connected to', addr)
+     print("Connected to :",from_user)
      c.send("TEXT TCP 1.0 \n".encode())
      return_msg = c.recv(1024).decode()
      print("\n",return_msg)
@@ -25,7 +25,7 @@ while True:
 
      while True:
           try:
-               X=input("<command> <value1> <value2>: \n")
+               X=input("\n<command> <value1> <value2>: \n")
                c.send(str(X).encode())
                Y=X.split()
                answer=c.recv(1024).decode()
