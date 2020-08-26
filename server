@@ -20,12 +20,12 @@ while True:
      print('Connected to', addr)
      c.send("TEXT TCP 1.0 \n".encode())
      return_msg = c.recv(1024).decode()
-     print("\n" , return_msg) 		    
+     print("\n",return_msg)
 
 
      while True:
           try:
-               X=input("<command> <value1> <value2>: " "\n")
+               X=input("<command> <value1> <value2>: \n")
                c.send(str(X).encode())
                Y=X.split()
                answer=c.recv(1024).decode()
@@ -33,73 +33,89 @@ while True:
                if Y[0] == "add":
                    a = int(Y[1])+int(Y[2])
                    if int(a) == int(answer):
-                       print("OK")
+                       print("\nOK\n")
+                       c.send("OK".encode())
                        break
                    else:
                        print("error")
+                       c.send("ERROR".encode())
                        break
 
                elif Y[0] == "sub":
-                    b = int(Y[1])-int(Y[2])
-                    if int(b) == int(answer):
-                       print("OK")
+                   b = int(Y[1])-int(Y[2])
+                   if int(b) == int(answer):
+                       print("\nOK\n")
+                       c.send("OK".encode())
                        break
-                    else:
+                   else:
                        print("error")
+                       c.send("ERROR".encode())
                        break
                    
                elif Y[0] == "mul":
                    d = int(Y[1])*int(Y[2])
                    if int(d) == int(answer):
-                       print("OK")
+                       print("\nOK\n")
+                       c.send("OK".encode())
                        break
                    else:
                        print("error")
+                       c.send("ERROR".encode())
                        break
+
                elif Y[0] == "div":
                    e = int(Y[1])/int(Y[2])
                    if int(e) == int(float(answer)):
-                       print("OK")
+                       print("\nOK\n")
+                       c.send("OK".encode())
                        break
                    else:
                        print("error")
+                       c.send("ERROR".encode())
                        break
 
                elif Y[0] == "fadd":
                    fa = float(Y[1])+float(Y[2])
                    if float(fa) == float(answer):
-                       print("OK")
+                       print("\nOK\n")
+                       c.send("OK".encode())
                        break
                    else:
                        print("error")
+                       c.send("ERROR".encode())
                        break
 
                elif Y[0] == "fsub":
                    fb = float(Y[1])-float(Y[2])
-                   print (fb)
                    if float(fb) == float(answer):
-                       print("OK")
+                       print("\nOK\n")
+                       c.send("OK".encode())
                        break
                    else:
                        print("error")
+                       c.send("ERROR".encode())
                        break
 
                elif Y[0] == "fmul":
                    fd = float(Y[1])*float(Y[2])
                    if float(fd) == float(answer):
-                       print("OK")
+                       print("\nOK\n")
+                       c.send("OK".encode())
                        break
                    else:
                        print("error")
+                       c.send("ERROR".encode())
                        break
 
                elif Y[0] == "fdiv":
                    fe = float(Y[1])/float(Y[2])
                    if float(fe) == float(answer):
-                       print("OK")
+                       print("\nOK\n")
+                       c.send("OK".encode())
                        break
                    else:
                        print("error")
+                       c.send("ERROR".encode())
                        break
 
                else:
