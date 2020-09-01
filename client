@@ -18,90 +18,74 @@ try:
     print("Connected to :",from_user)
     initial_msg = s.recv(1024).decode()
     print("\n", initial_msg)
-    s.send("OK".encode())
-
+    s.send("OK\n".encode())
 
     while(True):
-        Y=(s.recv(1024).decode()).split()
-
+        T=s.recv(1024).decode()
+        print(T)
+        Y=T.split()
         if Y[0] == "add":
-            print ("Calculating .....\n")
+            print ("\nCalculating .....\n")
             a = int(Y[1])+int(Y[2])
             s.send(str(a).encode())
             print("result is ",a )
             print("\nReturned the result to the server. \n")
-            return_msg = s.recv(1024).decode()
-            print(return_msg)
             break
 
         elif Y[0] == "sub":
-            print ("Calculating .....\n")
+            print ("\nCalculating .....\n")
             b = int(Y[1])-int(Y[2])
             s.send(str(b).encode())
             print("result is ", b)
             print("\nReturned the result to the server.\n")
-            return_msg = s.recv(1024).decode()
-            print(return_msg)
             break
 
         elif Y[0] == "mul":
-            print ("Calculating .....\n")
+            print ("\nCalculating .....\n")
             d = int(Y[1])*int(Y[2])
             s.send(str(d).encode())
             print("result is ", d)
             print("\nReturned the result to the server.\n")
-            return_msg = s.recv(1024).decode()
-            print(return_msg)
             break
 
         elif Y[0] == "div":
-            print ("Calculating .....\n")
+            print ("\nCalculating .....\n")
             e = int(Y[1])/int(Y[2])
             s.send(str(e).encode())   
             print("result is ",int(e))
             print("\nReturned the result to the server.\n")
-            return_msg = s.recv(1024).decode()
-            print(return_msg)
             break
 
         elif Y[0] == "fadd":
-            print ("Calculating .....\n")
+            print ("\nCalculating .....\n")
             fa = float(Y[1])+float(Y[2])
             s.send(str(fa).encode())
             print('result is %8.8g' %fa)
             print("\nReturned the result to the server.\n")
-            return_msg = s.recv(1024).decode()
-            print(return_msg)
             break
 
         elif Y[0] == "fsub":
-            print ("Calculating .....\n")
+            print ("\nCalculating .....\n")
             fb = float(Y[1])-float(Y[2])
             s.send(str(fb).encode())
             print('result is %8.8g'%fb)
             print("\nReturned the result to the server.\n")
-            return_msg = s.recv(1024).decode()
-            print(return_msg)
             break
 
         elif Y[0] == "fmul":
-            print ("Calculating .....\n")
+            print ("\nCalculating .....\n")
             fd = float(Y[1])*float(Y[2])
             s.send(str(fd).encode())
             print('result is %8.8g' %fd)
             print("\nReturned the result to the server.\n")
-            return_msg = s.recv(1024).decode()
-            print(return_msg)
             break
 
         elif Y[0] == "fdiv":
-            print ("Calculating .....\n")
+            print ("\nCalculating .....\n")
             fe = float(Y[1])/float(Y[2])
             s.send(str(fe).encode())
             print('result is %8.8g' %fe)
             print("\nReturned the result to the server.\n")
-            return_msg = s.recv(1024).decode()
-            print(return_msg)
             break
 
         elif result == "ZeroDiv":

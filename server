@@ -13,14 +13,14 @@ port       = int(split[1])
 s.bind((host, port)) 			    
 s.listen(1)
 
-print("Server is active" "\n" )
+print("Server is active")
 
 while True:
      c, addr = s.accept() 		    
      print("Connected to :",from_user)
      c.send("TEXT TCP 1.0 \n".encode())
      return_msg = c.recv(1024).decode()
-     print("\n",return_msg)
+     print("\n", return_msg)
 
 
      while True:
