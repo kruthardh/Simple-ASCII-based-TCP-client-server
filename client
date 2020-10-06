@@ -3,108 +3,79 @@
 import socket		 	                      
 import sys
 
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-
-try: 	  		              
-    from_user   = sys.argv[1]
-    split       = from_user.split(':')
-    host        = str(split[0])                           
-    port        = int(split[1])
+from_user   = sys.argv[1]
+split       = from_user.split(':')
+host        = str(split[0])                           
+port        = int(split[1])
 
 
-    s.connect((host, port))                           
+s.connect((host, port))                           
                            
-    print("Connected to :",from_user)
-    initial_msg = s.recv(1024).decode()
-    print("\n", initial_msg)
-    s.send("OK\n".encode())
+print("Connected to :",from_user)
+initial_msg = s.recv(1024).decode()
+print("\n", initial_msg)
+s.send("OK\n".encode())
 
-    while(True):
-        T=s.recv(1024).decode()
-        print(T)
-        Y=T.split()
-        if Y[0] == "add":
-            print ("\nCalculating .....\n")
-            a = int(Y[1])+int(Y[2])
-            s.send(str(a).encode())
-            print("result is ",a )
-            print("\nReturned the result to the server. \n")
-            break
-
-        elif Y[0] == "sub":
-            print ("\nCalculating .....\n")
-            b = int(Y[1])-int(Y[2])
-            s.send(str(b).encode())
-            print("result is ", b)
-            print("\nReturned the result to the server.\n")
-            break
-
-        elif Y[0] == "mul":
-            print ("\nCalculating .....\n")
-            d = int(Y[1])*int(Y[2])
-            s.send(str(d).encode())
-            print("result is ", d)
-            print("\nReturned the result to the server.\n")
-            break
-
-        elif Y[0] == "div":
-            print ("\nCalculating .....\n")
-            e = int(Y[1])/int(Y[2])
-            s.send(str(e).encode())   
-            print("result is ",int(e))
-            print("\nReturned the result to the server.\n")
-            break
-
-        elif Y[0] == "fadd":
-            print ("\nCalculating .....\n")
-            fa = float(Y[1])+float(Y[2])
-            s.send(str(fa).encode())
-            print('result is %8.8g' %fa)
-            print("\nReturned the result to the server.\n")
-            break
-
-        elif Y[0] == "fsub":
-            print ("\nCalculating .....\n")
-            fb = float(Y[1])-float(Y[2])
-            s.send(str(fb).encode())
-            print('result is %8.8g'%fb)
-            print("\nReturned the result to the server.\n")
-            break
-
-        elif Y[0] == "fmul":
-            print ("\nCalculating .....\n")
-            fd = float(Y[1])*float(Y[2])
-            s.send(str(fd).encode())
-            print('result is %8.8g' %fd)
-            print("\nReturned the result to the server.\n")
-            break
-
-        elif Y[0] == "fdiv":
-            print ("\nCalculating .....\n")
-            fe = float(Y[1])/float(Y[2])
-            s.send(str(fe).encode())
-            print('result is %8.8g' %fe)
-            print("\nReturned the result to the server.\n")
-            break
-
-        elif result == "ZeroDiv":
-            print("You can't divide by 0, try again")
-        elif result == "MathError":
-            print("There is an error with your math, try again")
-        elif result == "SyntaxError":
-            print("There is a syntax error, please try again")
-        elif result == "NameError":
-            print("You did not enter an equation, try again")        
+while(True):
+	T=s.recv(1024).decode()
+	print(T)
+	Y=T.split()
+	if len(Y) > 1:
+		if Y[0] == "add":
+			a = int(Y[1])+int(Y[2])
+			a1=str(a)+"\n"
+			s.send(a1.encode())
+			print("result is ",str(a) )
+           
+		elif Y[0] == "sub":
+			b = int(Y[1])-int(Y[2])
+			b1=str(b)+"\n"
+			s.send(b1.encode())
+			print("result is ", str(b))
+          
+		elif Y[0] == "mul":
+			d = int(Y[1])*int(Y[2])
+			a1=str(d)+"\n"
+			s.send(a1.encode())
+			print("result is ", str(d))
+          
+		elif Y[0] == "div":
+			e = int(Y[1])/int(Y[2])
+			a1=str(e)+"\n"
+			s.send(a1.encode())   
+			print("result is ",int(e))
+           
+		elif Y[0] == "fadd":
+			fa = float(Y[1])+float(Y[2])
+			a1=str(fa)+"\n"
+			s.send(a1.encode())
+			print('result is %8.8g' %fa)
+          
+		elif Y[0] == "fsub":
+			fb = float(Y[1])-float(Y[2])
+			a1=str(fb)+"\n"
+			s.send(a1.encode())
+			print('result is %8.8g'%fb)
             
+		elif Y[0] == "fmul":
+			fd = float(Y[1])*float(Y[2])
+			a1=str(fd)+"\n"
+			s.send(a1.encode())
+			print('result is %8.8g' %fd)
+            
+		elif Y[0] == "fdiv":
+			fe = float(Y[1])/float(Y[2])
+			a1=str(fe)+"\n"
+			s.send(a1.encode())
+			print('result is %8.8g' %fe)
+            
+		resp = s.recv(1024).decode()
+		print (resp)
+	break
 
-        else:
-            print("Wrong input bye bye")
-
-        print("Returned the result to the server.")
-
-    s.close
-
-except(IndexError, ValueError):
-    pass 				
+        
+s.close
 

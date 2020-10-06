@@ -16,123 +16,97 @@ s.listen(1)
 print("Server is active")
 
 while True:
-     c, addr = s.accept() 		    
-     print("Connected to :",from_user)
-     c.send("TEXT TCP 1.0 \n".encode())
-     return_msg = c.recv(1024).decode()
-     print("\n", return_msg)
+	c, addr = s.accept() 		    
+	print("Connected to :",from_user)
+	c.send("TEXT TCP 1.0\n".encode())
+	return_msg = c.recv(1024).decode()
+	print(return_msg)
 
 
-     while True:
-          try:
-               X=input("\n<command> <value1> <value2>: \n")
-               c.send(str(X).encode())
-               Y=X.split()
-               answer=c.recv(1024).decode()
+	while True:
+		X=input("<command> <value1> <value2>:\n")
+		c.send(str(X).encode())
+		Y=X.split()
+		answer=c.recv(1024).decode()
 
-               if Y[0] == "add":
-                   a = int(Y[1])+int(Y[2])
-                   if int(a) == int(answer):
-                       print("\nOK\n")
-                       c.send("OK".encode())
-                       break
-                   else:
-                       print("error")
-                       c.send("ERROR".encode())
-                       break
+		if Y[0] == "add":
+			a = int(Y[1])+int(Y[2])
+			if int(a) == int(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+				
 
-               elif Y[0] == "sub":
-                   b = int(Y[1])-int(Y[2])
-                   if int(b) == int(answer):
-                       print("\nOK\n")
-                       c.send("OK".encode())
-                       break
-                   else:
-                       print("error")
-                       c.send("ERROR".encode())
-                       break
+		elif Y[0] == "sub":
+			b = int(Y[1])-int(Y[2])
+			if int(b) == int(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+				
                    
-               elif Y[0] == "mul":
-                   d = int(Y[1])*int(Y[2])
-                   if int(d) == int(answer):
-                       print("\nOK\n")
-                       c.send("OK".encode())
-                       break
-                   else:
-                       print("error")
-                       c.send("ERROR".encode())
-                       break
+		elif Y[0] == "mul":
+			d = int(Y[1])*int(Y[2])
+			if int(d) == int(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+			
 
-               elif Y[0] == "div":
-                   e = int(Y[1])/int(Y[2])
-                   if int(e) == int(float(answer)):
-                       print("\nOK\n")
-                       c.send("OK".encode())
-                       break
-                   else:
-                       print("error")
-                       c.send("ERROR".encode())
-                       break
+		elif Y[0] == "div":
+			e = int(Y[1])/int(Y[2])
+			if int(e) == int(float(answer)):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+				
 
-               elif Y[0] == "fadd":
-                   fa = float(Y[1])+float(Y[2])
-                   if float(fa) == float(answer):
-                       print("\nOK\n")
-                       c.send("OK".encode())
-                       break
-                   else:
-                       print("error")
-                       c.send("ERROR".encode())
-                       break
+		elif Y[0] == "fadd":
+			fa = float(Y[1])+float(Y[2])
+			if float(fa) == float(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+				
 
-               elif Y[0] == "fsub":
-                   fb = float(Y[1])-float(Y[2])
-                   if float(fb) == float(answer):
-                       print("\nOK\n")
-                       c.send("OK".encode())
-                       break
-                   else:
-                       print("error")
-                       c.send("ERROR".encode())
-                       break
+		elif Y[0] == "fsub":
+			fb = float(Y[1])-float(Y[2])
+			if float(fb) == float(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+				
 
-               elif Y[0] == "fmul":
-                   fd = float(Y[1])*float(Y[2])
-                   if float(fd) == float(answer):
-                       print("\nOK\n")
-                       c.send("OK".encode())
-                       break
-                   else:
-                       print("error")
-                       c.send("ERROR".encode())
-                       break
+		elif Y[0] == "fmul":
+			fd = float(Y[1])*float(Y[2])
+			if float(fd) == float(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+				
 
-               elif Y[0] == "fdiv":
-                   fe = float(Y[1])/float(Y[2])
-                   if float(fe) == float(answer):
-                       print("\nOK\n")
-                       c.send("OK".encode())
-                       break
-                   else:
-                       print("error")
-                       c.send("ERROR".encode())
-                       break
+		elif Y[0] == "fdiv":
+			fe = float(Y[1])/float(Y[2])
+			if float(fe) == float(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+				
 
-               else:
+		else:
                    print ("Wrong input bye bye")
+		break
 
 
-          except (ZeroDivisionError):
-               c.send("ZeroDiv".encode())
-          except (ArithmeticError):
-               c.send("MathError".encode())
-          except (SyntaxError):
-               c.send("SyntaxError".encode())
-          except (NameError):
-               c.send("NameError".encode())    
-          
-
-     c.close()  
+c.close()  
 
 
 
