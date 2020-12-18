@@ -2,6 +2,7 @@
 
 import socket		 	            
 import sys
+import random
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -15,6 +16,8 @@ s.listen(1)
 
 print("Server is active")
 
+A = ["add", "sub", "mul", "div", "fadd", "fsub", "fdiv", "fmul"]
+
 while True:
 	c, addr = s.accept() 		    
 	print("Connected to :",from_user)
@@ -24,81 +27,122 @@ while True:
 
 
 	while True:
-		X=input("<command> <value1> <value2>:\n")
-		c.send(str(X).encode())
-		Y=X.split()
-		answer=c.recv(1024).decode()
+		X= random.choice(A)
+		if X == "add":
+			r1 = random.randint(1,100)
+			r2 = random.randint(1,150)
+			L = X + " " + str(r1) + " " + str(r2)
+			addition = r1 + r2
+			c.send(L.encode())
+			answer=c.recv(1024).decode()
+			print (addition)
+			if addition == int(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
 
-		if Y[0] == "add":
-			a = int(Y[1])+int(Y[2])
-			if int(a) == int(answer):
+		elif X == "sub":
+			r1 = random.randint(1,100)
+			r2 = random.randint(1,75)
+			L = X + " " + str(r1) + " " + str(r2)
+			subtraction = r1 - r2
+			c.send(L.encode())
+			answer=c.recv(1024).decode()
+			print (subtraction)
+			if subtraction == int(answer):
 				c.send("OK\n".encode())
 				
 			else:
 				c.send("ERROR\n".encode())
-				
 
-		elif Y[0] == "sub":
-			b = int(Y[1])-int(Y[2])
-			if int(b) == int(answer):
+		elif X == "mul":
+			r1 = random.randint(1,1000)
+			r2 = random.randint(1,1500)
+			L = X + " " + str(r1) + " " + str(r2)
+			multiplication = r1 * r2
+			c.send(L.encode())
+			answer=c.recv(1024).decode()
+			print (addition)
+			if multiplication == int(answer):
 				c.send("OK\n".encode())
 				
 			else:
 				c.send("ERROR\n".encode())
-				
-                   
-		elif Y[0] == "mul":
-			d = int(Y[1])*int(Y[2])
-			if int(d) == int(answer):
+
+		elif X == "div":
+			r1 = random.randint(1,100)
+			r2 = random.randint(1,150)
+			L = X + " " + str(r1) + " " + str(r2)
+			division = r1 / r2
+			c.send(L.encode())
+			answer=c.recv(1024).decode()
+			print ('result is %8.8g \n' %division)
+			if division == float(answer):
 				c.send("OK\n".encode())
 				
 			else:
 				c.send("ERROR\n".encode())
+
+		elif X == "fadd":
+			r1 = random.uniform(1,100)
+			r2 = random.uniform(1,150)
+			L = X + " " + str(r1) + " " + str(r2)
+			faddition = r1 + r2
+			c.send(L.encode())
+			answer=c.recv(1024).decode()
+			print ('result is %8.8g \n' %addition)
+			if faddition == float(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+
+		elif X == "fsub":
+			r1 = random.uniform(1,100)
+			r2 = random.uniform(1,75)
+			L = X + " " + str(r1) + " " + str(r2)
+			fsubtraction = r1 - r2
+			c.send(L.encode())
+			answer=c.recv(1024).decode()
+			print ('result is %8.8g \n' %fsubtraction)
+			if fsubtraction == float(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+
+		elif X == "fmul":
+			r1 = random.uniform(1,100)
+			r2 = random.uniform(1,150)
+			L = X + " " + str(r1) + " " + str(r2)
+			fmultiplication = r1 * r2
+			c.send(L.encode())
+			answer=c.recv(1024).decode()
+			print ('result is %8.8g \n' %fmultiplication)
+			if fmultiplication == float(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+
+		elif X == "fdiv":
+			r1 = random.uniform(1,100)
+			r2 = random.uniform(1,150)
+			L = X + " " + str(r1) + " " + str(r2)
+			fdivision = r1 / r2
+			c.send(L.encode())
+			answer=c.recv(1024).decode()
+			print ('result is %8.8g \n' %fdivision)
+			if fdivision == float(answer):
+				c.send("OK\n".encode())
+				
+			else:
+				c.send("ERROR\n".encode())
+
 			
 
-		elif Y[0] == "div":
-			e = int(Y[1])/int(Y[2])
-			if int(e) == int(float(answer)):
-				c.send("OK\n".encode())
-				
-			else:
-				c.send("ERROR\n".encode())
-				
-
-		elif Y[0] == "fadd":
-			fa = float(Y[1])+float(Y[2])
-			if float(fa) == float(answer):
-				c.send("OK\n".encode())
-				
-			else:
-				c.send("ERROR\n".encode())
-				
-
-		elif Y[0] == "fsub":
-			fb = float(Y[1])-float(Y[2])
-			if float(fb) == float(answer):
-				c.send("OK\n".encode())
-				
-			else:
-				c.send("ERROR\n".encode())
-				
-
-		elif Y[0] == "fmul":
-			fd = float(Y[1])*float(Y[2])
-			if float(fd) == float(answer):
-				c.send("OK\n".encode())
-				
-			else:
-				c.send("ERROR\n".encode())
-				
-
-		elif Y[0] == "fdiv":
-			fe = float(Y[1])/float(Y[2])
-			if float(fe) == float(answer):
-				c.send("OK\n".encode())
-				
-			else:
-				c.send("ERROR\n".encode())
+		
 				
 
 		else:

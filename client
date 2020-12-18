@@ -46,7 +46,7 @@ while(True):
 			e = int(Y[1])/int(Y[2])
 			a1=str(e)+"\n"
 			s.send(a1.encode())   
-			print("result is ",int(e))
+			print('result is %8.8g' %e)
            
 		elif Y[0] == "fadd":
 			fa = float(Y[1])+float(Y[2])
