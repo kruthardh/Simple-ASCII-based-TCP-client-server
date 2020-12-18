@@ -23,6 +23,7 @@ while True:
 	print("Connected to :",from_user)
 	c.send("TEXT TCP 1.0\n".encode())
 	return_msg = c.recv(1024).decode()
+	print(return_msg)
 
 
 	while True:
